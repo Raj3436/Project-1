@@ -1,14 +1,19 @@
 import React from 'react';
-import {BsBox, BsGear, BsHouseDoor, BsPerson} from 'react-icons/bs';
+import {
+  BsBox,
+  BsGear,
+  BsHouseDoor,
+  BsPerson,
+  BsPersonFill,
+} from 'react-icons/bs';
 import {Link, useLocation} from 'react-router-dom';
-import {useUser} from '../Services/Context/Auth-Context';
+import {useAuth, useUser} from '../Services/Context/Auth-Context';
 
 const Sidebar = () => {
   const user = useUser();
-  // const {logout} = useAuth();
-  console.log(user);
+  const {isAuthenticated} = useAuth();
+  const {logout} = useAuth();
   const location = useLocation();
-  // logout();
 
   return (
     <div className='sidebar'>
@@ -38,12 +43,23 @@ const Sidebar = () => {
             currentPath={location.pathname}
           />
         )}
-        <SidebarItem
+        {/* <SidebarItem
           icon={<BsGear />}
           to='/settings'
           text='Settings'
           currentPath={location.pathname}
-        />
+        /> */}
+        {isAuthenticated && (
+          <div
+            style={{paddingLeft: '15px', display: 'flex', alignItems: 'center'}}
+            onClick={() => {
+              logout();
+            }}
+          >
+            <BsPersonFill />
+            <span style={{marginLeft: '10px'}}>Logout</span>
+          </div>
+        )}
       </ul>
     </div>
   );
