@@ -44,8 +44,7 @@ export const AuthProvider = ({children}) => {
   useEffect(() => {
     const token = getCookie('token');
     if (token && !user) {
-      // Simulate fetching user data
-      setUser({username: 'exampleUser', role: 'admin'}); // Replace with actual fetch logic
+      setUser({username: 'exampleUser', role: 'admin'});
       setIsAuthenticated(true);
     } else if (!token) {
       setIsAuthenticated(false);

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BsBox,
-  BsGear,
+  // BsGear,
   BsHouseDoor,
   BsPerson,
   BsPersonFill,
@@ -23,7 +23,7 @@ const Sidebar = () => {
       <ul className='sidebar-menu'>
         <SidebarItem
           icon={<BsHouseDoor />}
-          to='/'
+          to='/dashboard'
           text='Dashboard'
           currentPath={location.pathname}
         />
