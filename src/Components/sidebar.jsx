@@ -16,52 +16,60 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className='sidebar'>
-      <div className='sidebar-header'>
-        <h3>SRT Infotech</h3>
-      </div>
-      <ul className='sidebar-menu'>
-        <SidebarItem
-          icon={<BsHouseDoor />}
-          to='/dashboard'
-          text='Dashboard'
-          currentPath={location.pathname}
-        />
-        {user?.role === 'admin' && (
-          <SidebarItem
-            icon={<BsPerson />}
-            to='/user'
-            text='User'
-            currentPath={location.pathname}
-          />
-        )}
-        {user?.role === 'user' && (
-          <SidebarItem
-            icon={<BsBox />}
-            to='/product'
-            text='Product'
-            currentPath={location.pathname}
-          />
-        )}
-        {/* <SidebarItem
+    <>
+      {isAuthenticated && (
+        <div className='sidebar'>
+          <div className='sidebar-header'>
+            <h3>SRT Infotech</h3>
+          </div>
+          <ul className='sidebar-menu'>
+            <SidebarItem
+              icon={<BsHouseDoor />}
+              to='/dashboard'
+              text='Dashboard'
+              currentPath={location.pathname}
+            />
+            {user?.role === 'admin' && (
+              <SidebarItem
+                icon={<BsPerson />}
+                to='/user'
+                text='User'
+                currentPath={location.pathname}
+              />
+            )}
+            {user?.role === 'user' && (
+              <SidebarItem
+                icon={<BsBox />}
+                to='/product'
+                text='Product'
+                currentPath={location.pathname}
+              />
+            )}
+            {/* <SidebarItem
           icon={<BsGear />}
           to='/settings'
           text='Settings'
           currentPath={location.pathname}
         /> */}
-        {isAuthenticated && (
-          <div
-            style={{paddingLeft: '15px', display: 'flex', alignItems: 'center'}}
-            onClick={() => {
-              logout();
-            }}
-          >
-            <BsPersonFill />
-            <span style={{marginLeft: '10px'}}>Logout</span>
-          </div>
-        )}
-      </ul>
-    </div>
+            {isAuthenticated && (
+              <div
+                style={{
+                  paddingLeft: '15px',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <BsPersonFill />
+                <span style={{marginLeft: '10px'}}>Logout</span>
+              </div>
+            )}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
