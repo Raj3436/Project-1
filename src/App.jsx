@@ -9,7 +9,7 @@ import Sidebar from './Components/sidebar';
 import PrivateRoute from './PrivateRoute';
 import Items from './items';
 function App() {
-  return (
+  return ( 
     <AuthProvider>
       <Router>
         <div className='app-container'>
@@ -35,7 +35,7 @@ function App() {
               <Route
                 path='/product'
                 element={
-                  <PrivateRoute allowedRoles={['user']} element={<Items />} />
+                  <PrivateRoute allowedRoles={['user']} element={<Product />} />
                 }
               />
               <Route
@@ -45,6 +45,12 @@ function App() {
                     allowedRoles={['user', 'admin']}
                     element={<Items />}
                   />
+                }
+              />
+              <Route
+                path='/items'
+                element={
+                  <Items/>
                 }
               />
             </Routes>
