@@ -1,5 +1,4 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-
 const AuthContext = createContext();
 const UserContext = createContext();
 const users = [
@@ -35,7 +34,6 @@ export const AuthProvider = ({children}) => {
       return parts[0] === name ? decodeURIComponent(parts[1]) : r;
     }, '');
   };
-
   const [isAuthenticated, setIsAuthenticated] = useState(!!getCookie('token'));
   const [user, setUser] = useState(null);
 
@@ -55,6 +53,7 @@ export const AuthProvider = ({children}) => {
         tem = el;
       }
     });
+
     if (!tem) {
       alert('INVALID USER');
       return;
@@ -79,7 +78,7 @@ export const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const token = getCookie('token');
-    if (token && !user) {
+    if (token && !user && localStorage.getItem('user')) {
       setUser(JSON.parse(localStorage.getItem('user')));
       setIsAuthenticated(true);
     } else if (!token) {

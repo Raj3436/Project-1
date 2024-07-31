@@ -7,7 +7,7 @@ import Product from './Pages/Product';
 import User from './Pages/User';
 import Sidebar from './Components/sidebar';
 import PrivateRoute from './PrivateRoute';
-
+import Items from './items';
 function App() {
   return (
     <AuthProvider>
@@ -35,7 +35,16 @@ function App() {
               <Route
                 path='/product'
                 element={
-                  <PrivateRoute allowedRoles={['user']} element={<Product />} />
+                  <PrivateRoute allowedRoles={['user']} element={<Items />} />
+                }
+              />
+              <Route
+                path='/items'
+                element={
+                  <PrivateRoute
+                    allowedRoles={['user', 'admin']}
+                    element={<Items />}
+                  />
                 }
               />
             </Routes>

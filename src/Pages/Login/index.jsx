@@ -10,7 +10,6 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: {errors},
   } = useForm();
 
@@ -19,12 +18,11 @@ const Login = () => {
       navigate('/dashboard');
     }
   }, [isAuthenticated, navigate]);
-  const handleLogin = (e) => {
-    console.log(e);
-    login(e);
-    navigate('/dashboard');
-  };
 
+  const handleLogin = (e) => {
+    login(e);
+    // navigate('/dashboard');
+  };
   return (
     <div>
       <form
