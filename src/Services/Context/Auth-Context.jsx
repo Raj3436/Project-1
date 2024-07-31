@@ -1,17 +1,40 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-
 const AuthContext = createContext();
 const UserContext = createContext();
-const authToken = 'TEMPORARY 1234567890987654321';
-
+const users = [
+  {
+    username: 'raj@gmail.com',
+    role: 'user',
+    password: '12345',
+    token: 'TEMPORARY 1234567890987654321',
+  },
+  {
+    username: 'admin@gmail.com',
+    password: '12345',
+    role: 'admin',
+    token: 'TEMPORARY 1234567890987654321',
+  },
+  {
+    username: 'abc@gmail.com',
+    password: '12345',
+    role: 'user',
+    token: 'TEMPORARY 1234567890987654321',
+  },
+  {
+    username: 'xyz@gmail.com',
+    password: '12345',
+    role: 'admin',
+    token: 'TEMPORARY 1234567890987654321',
+  },
+];
 export const AuthProvider = ({children}) => {
+  console.log(children,"::::::");
   const getCookie = (name) => {
     return document.cookie.split('; ').reduce((r, v) => {
       const parts = v.split('=');
       return parts[0] === name ? decodeURIComponent(parts[1]) : r;
     }, '');
   };
-
   const [isAuthenticated, setIsAuthenticated] = useState(!!getCookie('token'));
   const [user, setUser] = useState(null);
 
@@ -24,10 +47,23 @@ export const AuthProvider = ({children}) => {
     )}; expires=${expires}; path=/`;
   };
 
-  const login = () => {
-    const userData = {username: 'exampleUser', role: 'admin'};
+  const login = ({email, password}) => {
+    let tem;
+    users?.map((el) => {
+      if (el.username == email && el.password == password) {
+        tem = el;
+      }
+    });
+
+    if (!tem) {
+      alert('INVALID USER');
+      return;
+    }
+
+    const userData = tem;
+    localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
-    setCookie('token', authToken, 15);
+    setCookie('token', tem.token, 15);
     setIsAuthenticated(true);
   };
 
@@ -40,12 +76,11 @@ export const AuthProvider = ({children}) => {
   const removeCookie = (name) => {
     document.cookie = `${name}=; Max-Age=-1; path=/`;
   };
-
+  console.log('::');
   useEffect(() => {
     const token = getCookie('token');
-    if (token && !user) {
-      // Simulate fetching user data
-      setUser({username: 'exampleUser', role: 'admin'}); // Replace with actual fetch logic
+    if (token && !user && localStorage.getItem('user')) {
+      setUser(JSON.parse(localStorage.getItem('user')));
       setIsAuthenticated(true);
     } else if (!token) {
       setIsAuthenticated(false);
