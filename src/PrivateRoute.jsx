@@ -16,5 +16,5 @@ const PrivateRoute = ({allowedRoles, element: Component}) => {
 
   return Component;
 };
-
+ 
 export default PrivateRoute;
