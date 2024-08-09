@@ -24,6 +24,38 @@ const Dashboard = () => {
       mobile: 9771082642,
     },
     {
+      name: 'Raj',
+      gender: 'Male',
+      age: 99,
+      role: ['User', 'Admin'],
+      email: 'raj@srtinfotech.in',
+      mobile: 9771082642,
+    },
+    {
+      name: 'Raj',
+      gender: 'Male',
+      age: 99,
+      role: ['User', 'Admin'],
+      email: 'raj@srtinfotech.in',
+      mobile: 9771082642,
+    },
+    {
+      name: 'Raj',
+      gender: 'Male',
+      age: 99,
+      role: ['User', 'Admin'],
+      email: 'raj@srtinfotech.in',
+      mobile: 9771082642,
+    },
+    {
+      name: 'Raj',
+      gender: 'Male',
+      age: 99,
+      role: ['User', 'Admin'],
+      email: 'raj@srtinfotech.in',
+      mobile: 9771082642,
+    },
+    {
       name: 'Ranjan',
       gender: 'Male',
       age: 2,
@@ -96,9 +128,18 @@ const Dashboard = () => {
       mobile: 9771082642,
     },
   ];
+  function formSubmit(d) {
+    console.log(d, 'RRERERER');
+  }
   return (
     <div>
-      {dialog && <Create handleClose={() => setDialog(false)} />}
+      {dialog && (
+        <Create
+          handleClose={() => setDialog(false)}
+          title='MY PAGE 2323'
+          formSubmit={formSubmit}
+        />
+      )}
       <Box sx={{textAlign: 'right', p: 2}}>
         <Button
           variant='contained'

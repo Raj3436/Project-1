@@ -12,7 +12,7 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import {useForm} from 'react-hook-form';
 
-const DialogCreate = ({handleClose}) => {
+const DialogCreate = ({handleClose, title, formSubmit}) => {
   const {
     register,
     handleSubmit,
@@ -20,7 +20,9 @@ const DialogCreate = ({handleClose}) => {
     formState: {errors},
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    formSubmit(data);
+  };
 
   console.log(watch('example'));
   return (
@@ -38,7 +40,7 @@ const DialogCreate = ({handleClose}) => {
           }}
           id='responsive-dialog-title'
         >
-          <span>My Form </span>
+          <span>My Form {title}</span>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
@@ -51,15 +53,17 @@ const DialogCreate = ({handleClose}) => {
                   <TextField
                     label='Name'
                     fullWidth
+                    error={errors.example}
                     size='small'
                     defaultValue='test'
-                    {...register('example')}
+                    {...register('example', {required: true})}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
                     label='Email'
                     fullWidth
+                    error={errors.exampleRequired}
                     size='small'
                     {...register('exampleRequired', {required: true})}
                   />
