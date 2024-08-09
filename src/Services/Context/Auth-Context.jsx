@@ -76,7 +76,7 @@ export const AuthProvider = ({children}) => {
   const removeCookie = (name) => {
     document.cookie = `${name}=; Max-Age=-1; path=/`;
   };
-  console.log('::');
+
   useEffect(() => {
     const token = getCookie('token');
     if (token && !user && localStorage.getItem('user')) {
