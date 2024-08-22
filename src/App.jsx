@@ -8,8 +8,9 @@ import User from './Pages/User';
 import Sidebar from './Components/sidebar';
 import PrivateRoute from './PrivateRoute';
 import Items from './items';
+import ItemDetails from './item-details';
 function App() {
-  return ( 
+  return (
     <AuthProvider>
       <Router>
         <div className='app-container'>
@@ -47,12 +48,8 @@ function App() {
                   />
                 }
               />
-              <Route
-                path='/items'
-                element={
-                  <Items/>
-                }
-              />
+              <Route path='/items' element={<Items />} />
+              <Route path='/items/:id' element={<ItemDetails />} />
             </Routes>
           </div>
         </div>
