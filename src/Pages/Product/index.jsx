@@ -18,7 +18,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const Product = () => {
   const [listData, setListData] = useState();
-  const [openDial, setOpenDial] = useState(null);
+  const [openDial, setOpenDial] = useState(null); /////
   const [formData, setformData] = useState();
   useEffect(() => {
     if (!openDial) return;
