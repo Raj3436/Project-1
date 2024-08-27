@@ -28,7 +28,6 @@ const users = [
   },
 ];
 export const AuthProvider = ({children}) => {
-  console.log(children,"::::::");
   const getCookie = (name) => {
     return document.cookie.split('; ').reduce((r, v) => {
       const parts = v.split('=');

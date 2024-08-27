@@ -5,7 +5,6 @@ import {useAuth, useUser} from './Services/Context/Auth-Context';
 const PrivateRoute = ({allowedRoles, element: Component}) => {
   const {isAuthenticated} = useAuth();
   const user = useUser();
-  console.log(user?.role, ':::::');
   if (!isAuthenticated) {
     return <Navigate to='/' replace />;
   }
