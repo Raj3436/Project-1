@@ -219,7 +219,7 @@ const Product = () => {
                         alert('Updated Successfully');
                       } else {
                         alert('Something went wrong');
-                      }
+                      } //
                       setOpenDial(null);
                       getData();
                     })
